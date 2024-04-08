@@ -1,0 +1,219 @@
+---
+title: Setting a new Next.js Apps
+description: How to deploy your Next.js apps on Vercel.
+date: "2024-04-08"
+draft: false
+---
+
+## 建立一個新的 NEXT.JS 專案
+
+1. **開始建立**
+
+- 如果已經有資料夾，並且處在資料夾中
+
+```bash
+pnpm create next-app .
+```
+
+- 如果尚未有資料夾
+
+```bash
+pnpm create next-app project-name
+```
+
+2. **填入環境設定**
+
+- 按照自身需求選擇
+
+## 開始環境設定
+
+1. **使用 volta 管理 npm 版本**
+
+> 假設本次專案 node 版本需求為 20
+
+- 如果電腦尚未有 volta
+
+```bash
+curl https://get.volta.sh | bash
+```
+
+- 利用 volta 安裝 node@20
+
+```bash
+volta install node@20
+```
+
+- 將此專案固定為 node@20
+
+```bash
+volta pin node@20
+```
+
+- 如果在 `package.json` 中看到這段，就表示完成！之後每次打開此專案都固定將 node 調整至 20
+
+```json
+"volta": {
+  "node": "20.11.0"
+}
+```
+
+2. 檢查 Next.js 是否成功運行
+
+- 先下載 package
+
+```bash
+pnpm install
+```
+
+- 運行
+
+```bash
+pnpm dev
+```
+
+> 點開 http://localhost:3000 看看是否有成功運行
+
+3. 設置 Eslint & Prettier
+
+> 這裡皆可以按照個人需求設定
+
+- 安裝 Eslint & Prettier
+
+```bash
+pnpm i prettier eslint
+```
+
+- 下載相關套件
+
+```bash
+pnpm i eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-unused-imports prettier-plugin-tailwindcss
+```
+
+- 專案中應該會有 `.eslintrc.json` 將他改名成 `.eslintrc.js` 貼上這設定
+
+```js
+const config = {
+  root: true,
+
+  plugins: ["prettier", "@typescript-eslint", "unused-imports"],
+  extends: [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+  ],
+  parser: "@typescript-eslint/parser",
+
+  rules: {
+    "no-var": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "no-console": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/display-name": 1,
+    "react/jsx-filename-extension": [1, { extensions: [".ts", ".tsx"] }],
+    "prettier/prettier": "warn",
+    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        varsIgnorePattern: "^_",
+        args: "after-used",
+        argsIgnorePattern: "^_",
+      },
+    ],
+  },
+  ignorePatterns: ["**/*.css"],
+};
+
+export default config;
+```
+
+- 添加 `.eslintignore` 把 `.gitignores` 內容複製貼上
+
+- 新增 `.prettierrc.js`
+
+```js
+const config = {
+  tabWidth: 2,
+  printWidth: 80,
+  endOfLine: "auto",
+  arrowParens: "avoid",
+  trailingComma: "es5",
+  proseWrap: "preserve",
+  quoteProps: "as-needed",
+  semi: true,
+  useTabs: false,
+  bracketSpacing: true,
+  bracketSameLine: false,
+  plugins: ["prettier-plugin-tailwindcss"],
+};
+
+export default config;
+```
+
+- 添加 `.prettierrc` 把 `.gitignores` 內容複製貼上
+
+- 在 `package.json` 中 "scripts" 裡添加
+
+```json
+"scripts": {
+  // 本來的內容
+  "lint": "./node_modules/.bin/eslint --ext ./src && ./node_modules/.bin/prettier --check ./src",
+  "lint:fix": "./node_modules/.bin/eslint --fix --ext ./src && ./node_modules/.bin/prettier --write ./src"
+},
+```
+
+4. 設置 husky & lint-staged
+
+- 下載 husky
+
+```bash
+pnpm i husky
+```
+
+- 設置 husky 預設檔
+
+```bash
+pnpm dlx husky-init
+```
+
+- 點進 `.husky/pre-commit` 更改最後一行為
+
+```bash
+pnpm dlx lint-staged
+```
+
+- 下載 lint-staged
+
+```bash
+pnpm i lint-staged
+```
+
+- 在 `package.json` 中 "scripts" 裡添加
+
+```json
+{
+  // 本來的內容
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": "eslint --fix",
+    "src/**/*.{js,jsx,,ts,tsx,css,md}": "prettier --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm lint-staged"
+    }
+  }
+}
+```
+
+## 補充
+
+- 如果 global.css 中 @tailwind 的部分會出現 Unknown at rule @tailwind 的 Warning 的話，將這段更改寫法如下：
+
+```css
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+```

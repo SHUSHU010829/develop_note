@@ -3,6 +3,7 @@ import { allPosts } from "contentlayer/generated";
 
 import { Metadata } from "next";
 import { Mdx } from "@/components/mdx-components";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 
 interface PostProps {
   params: {
@@ -53,25 +54,27 @@ export default async function PostPage({ params }: PostProps) {
 
   return (
     <article className="py-6 prose dark:prose-invert">
-      {!post.draft ? (
-        <>
-          <h1 className="mb-2">{post.title}</h1>
-          {post.description && (
-            <p className="mt-0 text-xl text-slate-700 dark:text-slate-200">
-              {post.description}
+      <TracingBeam className="px-6">
+        {!post.draft ? (
+          <>
+            <h1 className="mb-2">{post.title}</h1>
+            {post.description && (
+              <p className="mt-0 text-xl text-slate-700 dark:text-slate-200">
+                {post.description}
+              </p>
+            )}
+            <hr className="my-4" />
+            <Mdx code={post.body.code} />
+          </>
+        ) : (
+          <>
+            <h1 className="mb-2">{post.title}</h1>
+            <p className="mt-8 text-sm font-bold text-slate-700 dark:text-slate-200">
+              還在監修中...請慢慢等待 ：）
             </p>
-          )}
-          <hr className="my-4" />
-          <Mdx code={post.body.code} />
-        </>
-      ) : (
-        <>
-          <h1 className="mb-2">{post.title}</h1>
-          <p className="mt-8 text-sm font-bold text-slate-700 dark:text-slate-200">
-            還在監修中...請慢慢等待 ：）
-          </p>
-        </>
-      )}
+          </>
+        )}
+      </TracingBeam>
     </article>
   );
 }
