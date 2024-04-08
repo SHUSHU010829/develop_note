@@ -7,7 +7,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 
 const outfit = Outfit({
   subsets: ["latin"],
-  weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata = {
