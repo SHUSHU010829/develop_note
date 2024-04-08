@@ -1,7 +1,5 @@
 # Next.js + Contentlayer
 
-A template with Next.js 13 app dir, Contentlayer, Tailwind CSS and dark mode.
+## TOOL
 
-https://next-contentlayer.vercel.app
-
-
+- 程式碼：[Code Hike](https://codehike.org/docs/themes)

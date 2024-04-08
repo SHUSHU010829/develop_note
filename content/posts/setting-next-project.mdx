@@ -51,7 +51,7 @@ volta pin node@20
 
 - 如果在 `package.json` 中看到這段，就表示完成！之後每次打開此專案都固定將 node 調整至 20
 
-```json
+```json package.json
 "volta": {
   "node": "20.11.0"
 }
@@ -91,7 +91,7 @@ pnpm i eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslin
 
 - 專案中應該會有 `.eslintrc.json` 將他改名成 `.eslintrc.js` 貼上這設定
 
-```js
+```js .eslintrc.js
 const config = {
   root: true,
 
@@ -134,7 +134,7 @@ export default config;
 
 - 新增 `.prettierrc.js`
 
-```js
+```js .prettierrc.js
 const config = {
   tabWidth: 2,
   printWidth: 80,
@@ -157,7 +157,7 @@ export default config;
 
 - 在 `package.json` 中 "scripts" 裡添加
 
-```json
+```json package.json
 "scripts": {
   // 本來的內容
   "lint": "./node_modules/.bin/eslint --ext ./src && ./node_modules/.bin/prettier --check ./src",
@@ -193,7 +193,7 @@ pnpm i lint-staged
 
 - 在 `package.json` 中 "scripts" 裡添加
 
-```json
+```json package.json
 {
   // 本來的內容
   "lint-staged": {
@@ -212,7 +212,7 @@ pnpm i lint-staged
 
 - 如果 global.css 中 @tailwind 的部分會出現 Unknown at rule @tailwind 的 Warning 的話，將這段更改寫法如下：
 
-```css
+```css global.css
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";

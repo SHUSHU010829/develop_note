@@ -1,5 +1,6 @@
 import Link from "next/link";
 import "./globals.css";
+import "@code-hike/mdx/dist/index.css"
 import { Outfit } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@/components/analytics";
