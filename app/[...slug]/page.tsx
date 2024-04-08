@@ -12,7 +12,7 @@ interface PageProps {
 
 async function getPageFromParams(params: PageProps["params"]) {
   const slug = params?.slug?.join("/")
-  const page = allPages.find((page) => page.slugAsParams === slug)
+  const page = allPages.find((page: { slugAsParams: string }) => page.slugAsParams === slug)
 
   if (!page) {
     null
@@ -37,7 +37,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams(): Promise<PageProps["params"][]> {
-  return allPages.map((page) => ({
+  return allPages.map((page: { slugAsParams: string }) => ({
     slug: page.slugAsParams.split("/"),
   }))
 }
