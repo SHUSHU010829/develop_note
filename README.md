@@ -2,4 +2,8 @@
 
 ## TOOL
 
-- 程式碼：[Code Hike](https://codehike.org/docs/themes)
+- [NextJs](https://nextjs.org/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [Contentlayer](https://contentlayer.dev/)
+- [Code Hike](https://codehike.org/docs/themes)
+- [Vercel](https://vercel.com)
