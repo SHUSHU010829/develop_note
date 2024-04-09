@@ -92,7 +92,7 @@ pnpm i eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslin
 - 專案中應該會有 `.eslintrc.json` 將他改名成 `.eslintrc.js` 貼上這設定
 
 ```js .eslintrc.js
-const config = {
+module.exports = {
   root: true,
 
   plugins: ["prettier", "@typescript-eslint", "unused-imports"],
@@ -124,10 +124,7 @@ const config = {
       },
     ],
   },
-  ignorePatterns: ["**/*.css"],
 };
-
-export default config;
 ```
 
 - 添加 `.eslintignore` 把 `.gitignores` 內容複製貼上
@@ -135,7 +132,7 @@ export default config;
 - 新增 `.prettierrc.js`
 
 ```js .prettierrc.js
-const config = {
+module.exports = {
   tabWidth: 2,
   printWidth: 80,
   endOfLine: "auto",
@@ -145,12 +142,12 @@ const config = {
   quoteProps: "as-needed",
   semi: true,
   useTabs: false,
+  singleQuote: true,
+  jsxSingleQuote: true,
   bracketSpacing: true,
   bracketSameLine: false,
   plugins: ["prettier-plugin-tailwindcss"],
 };
-
-export default config;
 ```
 
 - 添加 `.prettierrc` 把 `.gitignores` 內容複製貼上
