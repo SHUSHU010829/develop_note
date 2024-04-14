@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const navigation = [{ name: "Post", href: "/" }, { name: "About", href: "/about" }];
 
 export const SquigglyUnderline = () => {
-    const [selectedLink, setSelectedLink] = useState("Home");
+    const [selectedLink, setSelectedLink] = useState("Post");
 
     return (
         <div className="flex gap-16">
