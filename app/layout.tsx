@@ -5,6 +5,7 @@ import { Outfit } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@/components/analytics";
 import { ModeToggle } from "@/components/mode-toggle";
+import { SquigglyUnderline } from "@/components/ui/squiggly-underline";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -26,18 +27,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={`antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${outfit.className}`}
       >
+        
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="max-w-2xl px-4 py-10 mx-auto">
             <header>
               <div className="flex items-center justify-between">
                 <ModeToggle />
-                <nav className="ml-auto space-x-6 text-sm font-medium">
-                  <Link href="/">Home</Link>
-                  <Link href="/about">About</Link>
-                </nav>
+                <SquigglyUnderline />
               </div>
             </header>
-            <main>{children}</main>
+            <main>
+                {children}
+            </main>
           </div>
           <Analytics />
         </ThemeProvider>
