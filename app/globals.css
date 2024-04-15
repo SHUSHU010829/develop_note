@@ -2,7 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-body { background-image: url('/bg.svg'); }
+body {
+  background-image: url("/bg.svg");
+  -webkit-font-smoothing: antialiased;
+}
 
 .ch-codeblock .ch-code-button {
   display: none;
