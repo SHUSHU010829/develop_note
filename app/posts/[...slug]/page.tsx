@@ -54,7 +54,7 @@ export default async function PostPage({ params }: PostProps) {
 
   return (
     <article className="py-6 prose dark:prose-invert">
-      <TracingBeam className="px-6">
+      <TracingBeam className="px-12 sm:px-6">
         {!post.draft ? (
           <>
             <h1 className="mb-2">{post.title}</h1>
