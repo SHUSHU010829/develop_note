@@ -1,5 +1,5 @@
 import "./globals.css";
-import "@code-hike/mdx/dist/index.css"
+import "@code-hike/mdx/dist/index.css";
 import { Outfit } from "next/font/google";
 
 import { ThemeProvider } from "@/components/theme-provider";
@@ -27,6 +27,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={`antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${outfit.className}`}
       >
+        <head>
+          <script
+            defer
+            src="https://cloud.umami.is/script.js"
+            data-website-id="c8dac692-49b1-4b92-a953-d102fa42ef56"
+          ></script>
+        </head>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="max-w-2xl px-4 py-10 mx-auto">
             <header>
@@ -35,9 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <SquigglyUnderline />
               </div>
             </header>
-            <main>
-                {children}
-            </main>
+            <main>{children}</main>
           </div>
           <Analytics />
         </ThemeProvider>
