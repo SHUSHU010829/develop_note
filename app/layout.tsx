@@ -33,6 +33,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
             src="https://cloud.umami.is/script.js"
             data-website-id="c8dac692-49b1-4b92-a953-d102fa42ef56"
           ></script>
+          <script
+            defer
+            data-domain="shuyuan.dev"
+            src="https://shuplausible.zeabur.app/js/script.js"
+          ></script>
         </head>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="max-w-2xl px-4 py-10 mx-auto">
