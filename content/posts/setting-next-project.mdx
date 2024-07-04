@@ -88,7 +88,7 @@ pnpm i prettier eslint
 - 下載相關套件
 
 ```bash
-pnpm i eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-unused-imports prettier-plugin-tailwindcss
+pnpm i eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier prettier-plugin-tailwindcss
 ```
 
 - 專案中應該會有 `.eslintrc.json` 將他改名成 `.eslintrc.js` 貼上這設定
@@ -97,7 +97,7 @@ pnpm i eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslin
 module.exports = {
   root: true,
 
-  plugins: ["prettier", "@typescript-eslint", "unused-imports"],
+  plugins: ["prettier", "@typescript-eslint"],
   extends: [
     "next/core-web-vitals",
     "eslint:recommended",
@@ -108,23 +108,14 @@ module.exports = {
 
   rules: {
     "no-var": "off",
-    "@typescript-eslint/no-explicit-any": "warn",
+    "no-unused-vars": "off",
     "no-console": "warn",
     "react/react-in-jsx-scope": "off",
     "react/display-name": 1,
     "react/jsx-filename-extension": [1, { extensions: [".ts", ".tsx"] }],
     "prettier/prettier": "warn",
-    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        vars: "all",
-        varsIgnorePattern: "^_",
-        args: "after-used",
-        argsIgnorePattern: "^_",
-      },
-    ],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
   },
 };
 ```
