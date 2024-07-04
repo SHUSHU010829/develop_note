@@ -7,6 +7,8 @@ draft: false
 
 ## 建立一個新的 NEXT.JS 專案
 
+> 本教學使用 pnpm 作為套件管理工具，如果你使用 npm 或 yarn 也可以參考此教學。
+
 1. **開始建立**
 
 - 如果已經有資料夾，並且處在資料夾中
@@ -27,11 +29,11 @@ pnpm create next-app project-name
 
 ## 開始環境設定
 
-1. **使用 volta 管理 npm 版本**
+1. **使用 volta 管理 npm 版本** (非必要)
 
-> 假設本次專案 node 版本需求為 20
+> 假設本次專案 node 版本需求為 v20，我想要讓每一位執行此專案的人員都能夠使用相同的 node 版本。
 
-- 如果電腦尚未有 volta
+- 如果電腦尚未有 volta，請先安裝！
 
 ```bash
 curl https://get.volta.sh | bash
@@ -49,7 +51,7 @@ volta install node@20
 volta pin node@20
 ```
 
-- 如果在 `package.json` 中看到這段，就表示完成！之後每次打開此專案都固定將 node 調整至 20
+- 如果在 `package.json` 中看到這段，就表示完成！之後每次打開此專案都固定將 node 版本調整至 v20
 
 ```json package.json
 "volta": {
@@ -71,9 +73,9 @@ pnpm install
 pnpm dev
 ```
 
-> 點開 http://localhost:3000 看看是否有成功運行
+> 點開 http://localhost:3000 看看是否有成功運行，如果有，恭喜你！你已經成功建立一個 Next.js 專案。
 
-3. 設置 Eslint & Prettier
+3. 設置 Eslint & Prettier (非必要)
 
 > 這裡皆可以按照個人需求設定
 
