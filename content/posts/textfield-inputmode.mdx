@@ -1,0 +1,87 @@
+---
+title: [小記]Input: inputmode
+description: React notes
+date: "2024-12-04"
+draft: false
+---
+
+# Input: inputmode
+
+### Type
+
+```html
+<input type="button" />
+<input type="checkbox" />
+<input type="color" />
+<input type="date" />
+<input type="datetime-local" />
+<input type="email" />
+<input type="file" />
+<input type="hidden" />
+<input type="image" />
+<input type="month" />
+<input type="number" />
+<input type="password" />
+<input type="radio" />
+<input type="range" />
+<input type="reset" />
+<input type="search" />
+<input type="submit" />
+<input type="tel" />
+<input type="text" /> (default value)
+<input type="time" />
+<input type="url" />
+<input type="week" />
+```
+
+### 屬性介紹
+
+- 不想要有輸入框時 (iOS 沒用)
+
+  ```html
+  <input type="text" inputmode="none" />
+  ```
+
+- 只需要數字而不要字串
+
+  ```html
+  <input type="text" inputmode="numeric" />
+  ```
+
+  ```html
+  <input type="text" inputmode="numeric" min="6" max="12" pattern="\d*" />
+  ```
+
+- 原生的電話按鍵
+
+  ```html
+  <input type="text" inputmode="tel" />
+  ```
+
+- 小數鍵盤（only iOS）
+
+  ```html
+  <input type="text" inputmode="decimal" />
+  ```
+
+- Email
+
+  ```html
+  <input type="text" inputmode="email" />
+  ```
+
+- url
+
+  ```html
+  <input type="text" inputmode="url" />
+  ```
+
+- Search
+
+  ```html
+  <input type="text" inputmode="search" />
+  ```
+
+## Resource
+
+https://css-tricks.com/everything-you-ever-wanted-to-know-about-inputmode/

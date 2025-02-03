@@ -1,0 +1,29 @@
+---
+title: [小記]The Better Way to call api in React
+description: React notes
+date: "2024-12-04"
+draft: true
+---
+
+# **The Better Way to call Api in React**
+
+[React Hooks: useEffect() is called twice even if an empty array is used as an argument](https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar)
+
+```tsx
+const getData = useRef(false);
+
+useEffect(() => {
+  if (!getData.current) {
+    getData.current = true;
+    const fetchDate = async () => {
+      try {
+        const res = await getPaymentUser(uuid);
+        console.log("🚀 ~ fetchDate ~ data", res.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  }
+  fetchDate();
+}, [uuid]);
+```

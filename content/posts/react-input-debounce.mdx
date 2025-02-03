@@ -1,0 +1,110 @@
+---
+title: [小記]前端優化：Input Debounce
+description: React notes
+date: "2024-12-04"
+draft: true
+---
+
+# 前端優化：Input Debounce
+
+> 用於減低後端的負擔
+
+```tsx
+import { useState, useEffect} from 'react';
+import useDebounce from './useDebounce.jsx'
+
+function App() {
+  const [search, setSearch] = useState("");
+
+  const deBounceSearch = useDebounce(search);
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  }
+
+  useEffect(() => {
+    const getApiData = async() => {
+      console.log("getApiData...");
+      // async await
+    };
+
+    getApiData();
+  },[deBounceSearch]);
+
+  return (
+    <>
+      <input value={search} onChange={handleChange} />
+      <p>{search}</p>
+    </>
+  );
+```
+
+useDebounce.jsx
+
+```tsx
+import { useState, useEffect } from "react";
+
+const useDebounce = (value) => {
+  const [debounceSearch, setDebounceSearch] = useState("");
+
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      setDebounceSearch(search);
+    }, 500);
+
+    return () => clearTimeout(debounce);
+  }, [search]);
+
+  return debounceSearch;
+};
+
+export default useDebounce;
+```
+
+## 使用 Lodash
+
+lodash document : [++https://lodash.com/docs/4.17.15#debounce++](https://lodash.com/docs/4.17.15#debounce)
+
+```tsx
+import React, { useEffect, useState, useCallback } from "react";
+import _ from "lodash";
+import "./App.css";
+
+function App() {
+  const [state, setState] = useState("");
+  const [debouncedState, setDebouncedState] = useState("");
+
+  const handleChange = (event) => {
+    setState(event.target.value);
+    debounce(event.target.value);
+  };
+
+  const debounce = useCallback(
+    _.debounce((_searchVal) => {
+      setDebouncedState(_searchVal);
+    }, 500),
+    []
+  );
+
+  return (
+    <div className="App">
+      <form>
+        <label>
+          type
+          <input type="text" onChange={handleChange} />
+        </label>
+      </form>
+      <p>without Debounced {state}</p>
+      <p>Debounced Value: {debouncedState}</p>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### 參考
+
+https://youtu.be/1Y4XTpmzozI?si=zmMlVID4qfCuF9vm
+
+https://molly1024.medium.com/%E5%A6%82%E4%BD%95%E5%9C%A8react%E5%B0%88%E6%A1%88%E4%BD%BF%E7%94%A8lodash-debounce-how-to-use-lodash-debounce-in-react-project-e56d85e0474f

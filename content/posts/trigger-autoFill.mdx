@@ -1,0 +1,127 @@
+---
+title: [小記]Trigger AutoFill in Chrome
+description: React notes
+date: "2024-12-04"
+draft: true
+---
+
+# Trigger AutoFill in Chrome
+
+## How to name your `<input>` tags
+
+Here's how to name your inputs:
+
+- _Name_
+
+  - Use any of these for **`name`**: `name fname mname lname`
+
+  - Use any of these for **`autocomplete`**:
+
+    - `name` (for full name)
+
+    - `given-name` (for first name)
+
+    - `additional-name` (for middle name)
+
+    - `family-name` (for last name)
+
+  - Example: `<input type="text" name="fname" autocomplete="given-name">`
+
+- _Email_
+
+  - Use any of these for **`name`**: `email`
+
+  - Use any of these for **`autocomplete`**: `email`
+
+  - Example: `<input type="text" name="email" autocomplete="email">`
+
+- _Address_
+
+  - Use any of these for **`name`**: `address city region province state zip zip2 postal country`
+
+  - Use any of these for **`autocomplete`**:
+
+    - For one address input:
+
+      - `street-address`
+
+    - For two address inputs:
+
+      - `address-line1`
+
+      - `address-line2`
+
+    - `address-level1` (state or province)
+
+    - `address-level2` (city)
+
+    - `postal-code` (zip code)
+
+    - `country`
+
+- _Phone_
+
+  - Use any of these for **`name`**: `phone mobile country-code area-code exchange suffix ext`
+
+  - Use any of these for **`autocomplete`**: `tel`
+
+- _Credit Card_
+
+  - Use any of these for **`name`**: `ccname cardnumber cvc ccmonth ccyear exp-date card-type`
+
+  - Use any of these for **`autocomplete`**:
+
+    - `cc-name`
+
+    - `cc-number`
+
+    - `cc-csc`
+
+    - `cc-exp-month`
+
+    - `cc-exp-year`
+
+    - `cc-exp`
+
+    - `cc-type`
+
+- _Usernames_
+
+  - Use any of these for **`name`**: `username`
+
+  - Use any of these for **`autocomplete`**: `username`
+
+- _Passwords_
+
+  - Use any of these for **`name`**: `password`
+
+  - Use any of these for **`autocomplete`**:
+
+    - `current-password` (for sign-in forms)
+
+    - `new-password` (for sign-up and password-change forms)
+
+## Example
+
+```tsx
+<label for="frmNameA">Name</label>
+<input type="text" name="name" id="frmNameA"
+placeholder="Full name" required autocomplete="name">
+
+<label for="frmEmailA">Email</label>
+<input type="email" name="email" id="frmEmailA"
+placeholder="name@example.com" required autocomplete="email">
+
+<!-- note that "emailC" will not be autocompleted -->
+<label for="frmEmailC">Confirm Email</label>
+<input type="email" name="emailC" id="frmEmailC"
+placeholder="name@example.com" required autocomplete="email">
+
+<label for="frmPhoneNumA">Phone</label>
+<input type="tel" name="phone" id="frmPhoneNumA"
+placeholder="+1-555-555-1212" required autocomplete="tel">
+```
+
+## Resources
+
+**_[++https://stackoverflow.com/a/41965106/1696153++](https://stackoverflow.com/a/41965106/1696153)_**

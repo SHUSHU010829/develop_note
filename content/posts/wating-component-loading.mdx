@@ -1,0 +1,30 @@
+---
+title: [小記]等待子元件完成 Loading
+description: React notes
+date: "2024-12-04"
+draft: true
+---
+
+# 等待子元件完成 Loading
+
+(Suspense)[https://react.dev/reference/react/Suspense]：A component to wait for something to load.
+
+## 常見用途
+
+- Loading 動畫
+
+```react
+<Suspense fallback={<Loading/>}>
+  <Component />
+</Suspense>
+```
+
+- Lazy-loading components
+
+```react
+const Component = lazy(()=>import('./Component'))
+
+<Suspense fallback={<Loading/>}>
+  <Component />  // only loaded when it is needed
+</Suspense>
+```
